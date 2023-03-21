@@ -16,19 +16,39 @@ def main():
                                     clear_screen=True, title=PACKAGES_TITLE, skip_empty_entries=True)
 
     if(robot == "Mini"):
-        run_mini_install()
-        for x in range(0, 20):
-            print(".", end="", flush=True)
-            time.sleep(0.1)
+        run_mini_install()     
         packages_install_menu.show()
-        print("Now installing the following packages: ", end="")
-        print(packages_install_menu.chosen_menu_entries)
-        time.sleep(100)
+    elif(robot == "Miti"):
+        run_miti_install()
+    elif(robot == "Pro"):
+        run_pro_install()
+    elif(robot == "Zero2"):
+        run_zero2_install()
+    elif(robot == "Zero3"):
+        run_zero3_install()
+    elif(robot == "Skip to Additional Packages"):
+        packages_install_menu.show()
     else:
-        print(robot_install_menu.chosen_menu_entry)
+        print("Goodbye!")
 
 def run_mini_install():
-    print("Running mini install...\n")
+    print("Running mini install...")
+    print("Additional Packages will be made available after install.\n")
+
+def run_miti_install():
+    print("Running miti install...")
+    print("Additional Packages will be made available after install.\n")
+
+def run_pro_install():
+    print("Running pro install...")
+    print("Additional Packages will be made available after install.\n")
+
+def run_zero2_install():
+    print("Running zero2 install...")
+    print("Additional Packages will be made available after install.\n")
+
+def run_zero3_install():
+    print("Running zero3 install...")
     print("Additional Packages will be made available after install.\n")
 
 if __name__ == "__main__":
