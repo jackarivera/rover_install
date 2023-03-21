@@ -13,7 +13,7 @@ def main():
 
     packages_options = ["Foxglove", "Slam Toolbox", "BMI088 Driver", "Nav2", "Slamtec Lidar", "Exit"]
     packages_install_menu = TerminalMenu(packages_options, multi_select=True, multi_select_empty_ok=True, \
-                                    clear_screen=True, title=PACKAGES_TITLE, skip_empty_entries=True)
+                                    clear_screen=True, title=PACKAGES_TITLE, skip_empty_entries=True, multi_select_select_on_accept=False)
 
     if(robot == "Mini"):
         run_mini_install()     
