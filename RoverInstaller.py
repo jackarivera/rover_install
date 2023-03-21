@@ -28,6 +28,7 @@ def main():
         run_zero3_install()
     elif(robot == "Skip to Additional Packages"):
         packages_install_menu.show()
+        print(packages_install_menu.chosen_menu_entries)
     else:
         print("Goodbye!")
 
