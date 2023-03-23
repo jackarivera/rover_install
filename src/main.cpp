@@ -58,23 +58,55 @@ int main(void) {
       Checkbox(&additional_packages[6], &additional_packages_states[6])
   });
 
+  auto install_text_render = [&] {
+    Elements output;
+    output.push_back(text(robot_list[selected_robot]) | bold);
+    int add_sel_count = 0;
+    for(int i = 0; i < sizeof(additional_packages_states) / sizeof(bool); i++){
+      if(additional_packages_states[i])
+        add_sel_count++;
+    }
+    for(int i = 0; i < sizeof(additional_packages) / sizeof(std::string); i++){
+      if(additional_packages_states[i] && (add_sel_count == 1 || output.size() == add_sel_count)){
+        output.push_back(text(" └─" + additional_packages[i]));
+      } else if(additional_packages_states[i]) {
+        output.push_back(text(" ├─" + additional_packages[i]));
+      }
+    }
+    return output;
+  };
+
+  auto install_button = Container::Horizontal({
+    Button("Run Install", [&]{})
+  }) | center | color(Color::CadetBlue);
+
   auto layout = Container::Horizontal({
     robots_component,
-    packages_component
+    packages_component,
+    install_button
   });
 
-  auto installer_renderer = Renderer(layout, [&] {
-    auto robots_win = window(text("Rover Robots"), robots_component->Render() | frame | size(WIDTH, EQUAL, 20));
-    auto packages_win = window(text("Additional Packages"), packages_component->Render() | frame);
 
-    return hbox({
+  auto installer_renderer = Renderer(layout, [&] {
+    auto robots_win = window(text("Rover Robots"), robots_component->Render() | size(WIDTH, EQUAL, 20));
+    auto packages_win = window(text("Additional Packages"), packages_component->Render());
+    auto install_win = window(text("Install"), vbox(install_text_render(), text(""), separatorHeavy(), install_button->Render() | center));
+
+    auto vertical_layout = vbox({
+      vbox({color(Color::DeepSkyBlue2, text("Install Options"))}) | borderDouble | size(WIDTH, EQUAL, 15),
+      hbox({
               robots_win,
-              packages_win
+              packages_win,
+              install_win
+      }),
+      vbox({color(Color::DeepSkyBlue2, text("Logs and Debug"))}) | borderDouble | size(WIDTH, EQUAL, 15),
     });
+
+    return vertical_layout;
   });
   
 
-  auto screen = ScreenInteractive::TerminalOutput();
+  auto screen = ScreenInteractive::Fullscreen();
   system("clear");
   screen.Loop(installer_renderer);
 
