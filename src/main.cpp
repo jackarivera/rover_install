@@ -76,21 +76,26 @@ int main(void) {
     return output;
   };
 
-  auto install_button = Container::Horizontal({
-    Button("Run Install", [&]{})
-  }) | center | color(Color::CadetBlue);
+  std::string button_label = "Run Install";
+  bool installing = true;
+  auto install_button = Button(&button_label, [&]{button_label = "Installing..."; installing = true;}, ButtonOption::Border()) | center | color(Color::CadetBlue);
+  auto install_button_container = Container::Horizontal({
+    install_button
+  });
 
-  auto layout = Container::Horizontal({
+  auto layout = Container::Vertical({
+    Container::Horizontal({
     robots_component,
     packages_component,
-    install_button
+    install_button_container
+    })
   });
 
 
   auto installer_renderer = Renderer(layout, [&] {
     auto robots_win = window(text("Rover Robots"), robots_component->Render() | size(WIDTH, EQUAL, 20));
     auto packages_win = window(text("Additional Packages"), packages_component->Render());
-    auto install_win = window(text("Install"), vbox(install_text_render(), text(""), separatorHeavy(), install_button->Render() | center));
+    auto install_win = window(text("Install"), vbox(install_text_render(), text(""), separator(), install_button->Render() | center));
 
     auto vertical_layout = vbox({
       vbox({color(Color::DeepSkyBlue2, text("Install Options"))}) | borderDouble | size(WIDTH, EQUAL, 15),
