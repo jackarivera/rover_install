@@ -4,10 +4,10 @@
 
 | Features           | rover_tools | rover_install |
 |--------------------|-------------|---------------|
-| ROS1               | ✓           | ✗             |
-| ROS2               | ✓           | ✓             |
-| Interactive UI     | ✗           | ✓             |
-| All-in-one Install | ✗           | ✓             |
-| In-depth Logs      | ✗           | ✓             |
+| ROS1               | ✅           | ❌             |
+| ROS2               | ✅           | ✅             |
+| Interactive UI     | ❌           | ✅             |
+| All-in-one Install | ❌           | ✅             |
+| In-depth Logs      | ❌           | ✅             |
 
 
