@@ -22,8 +22,8 @@ project(rover_install
   VERSION 1.0.0
 )
 
-add_executable(rover_installer src/main.cpp src/UI/ui.hpp src/UI/ui.cpp src/include/robot_info.hpp)
-target_include_directories(rover_installer PRIVATE src UI)
+add_executable(rover_installer src/main.cpp src/UI/ui.hpp src/UI/ui.cpp src/include/robot_info.hpp src/UI/log_displayer.cpp src/UI/log_displayer.hpp)
+target_include_directories(rover_installer PRIVATE src)
 
 target_link_libraries(rover_installer
   PRIVATE ftxui::screen

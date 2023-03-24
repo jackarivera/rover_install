@@ -3,7 +3,7 @@
 #include <string>
 #include <array>
 
-const std::vector<std::string> robot_list = {
+const extern std::vector<std::string> robot_list = {
     "Mini",
     "Miti",
     "Zero2",
