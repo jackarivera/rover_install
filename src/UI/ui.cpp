@@ -1,5 +1,7 @@
 #include "ui.hpp"
-#include "../include/robot_info.hpp"
+#include "include/robot_info.hpp"
+#include "log_displayer.hpp"
+#include "include/log_line.hpp"
 
 using namespace ftxui;
 
@@ -56,12 +58,26 @@ Container::Horizontal({
 })
 });
 
+LogFormatter lf = LogFormatter();
+
+LogFormatter::LogLine l1 = lf.createLog("TEST", "This is a test Message", 0000);
+LogFormatter::LogLine  l2 = lf.createLog("WARNING", "This is a warning Message", 1000);
+LogFormatter::LogLine  l3 = lf.createLog("ERROR", "This is an error Message", 2359);
+LogFormatter::LogLine  l4 = lf.createLog("SUCCESS", "This is a success Message", 9999);
+
+std::vector<LogFormatter::LogLine*> test_log{
+    &l1,
+    &l2,
+    &l3,
+    &l4
+    }; 
+
 Component UI::RenderInstallerUI(){
     return Renderer(layout, [&] {
         auto robots_win = window(text("Rover Robots"), robots_component->Render() | size(WIDTH, EQUAL, 20));
         auto packages_win = window(text("Additional Packages"), packages_component->Render());
         auto install_win = window(text("Install"), vbox(install_text_render(), text(""), separator(), install_button->Render() | center) | flex_grow);
-        auto logs_win = window(text("Install Logs"), logs_container->Render() | flex_grow);
+        Element logs_win = LogDisplayer::RenderLog(test_log);
 
         auto vertical_layout = vbox({
             vbox({color(Color::DeepSkyBlue2, text("Install Options"))}) | borderDouble | size(WIDTH, EQUAL, 15),
@@ -71,9 +87,7 @@ Component UI::RenderInstallerUI(){
                 install_win
             }),
             vbox({color(Color::DeepSkyBlue2, text("Logs and Debug"))}) | borderDouble | size(WIDTH, EQUAL, 15),
-            hbox({
-                logs_win
-            })
+            logs_win
         });
 
         return vertical_layout;
