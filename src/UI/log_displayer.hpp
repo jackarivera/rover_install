@@ -1,11 +1,12 @@
 #include "ftxui/component/component.hpp"
 #include <string>
-#include  "../include/log_line.hpp"
+#include  "include/log_line.hpp"
 
 using namespace ftxui;
 
 class LogDisplayer : public ComponentBase {
     public:
         LogDisplayer() = default;
-        Element RenderLog(std::vector<LogLine> log_lines);
+        static Element RenderLog(std::vector<LogFormatter::LogLine*> log_lines);
+        
 };
