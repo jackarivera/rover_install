@@ -10,6 +10,8 @@ The Rover installer will handle the install of rover robot software and related 
 
 The Robot Toolbox will have all sorts of features from configuring settings to launching nodes and even viewing robot data.
 
+All of this will be through a terminal user interface which means all of these tools can be accessed through ssh with a "graphical" interface.
+
 > :warning: This installer is not yet finished and may have no functionality or unforeseen consequences if used to install a robot at this point. Proceed with caution!
 
 | Features           | rover_tools | rover_install |
