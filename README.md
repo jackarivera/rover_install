@@ -14,12 +14,14 @@ All of this will be through a terminal user interface which means all of these t
 
 > :warning: This installer is not yet finished and may have no functionality or unforeseen consequences if used to install a robot at this point. Proceed with caution!
 
-| Features           | rover_tools | rover_install |
+| Features           | Old rover_tools | New rover_toolbox |
 |--------------------|-------------|---------------|
 | ROS1               | ✅           | ❌             |
 | ROS2               | ✅           | ✅             |
 | Interactive UI     | ❌           | ✅             |
 | All-in-one Install | ❌           | ✅             |
 | In-depth Logs      | ❌           | ✅             |
-
+| Robot Configurator      | ❌           | ✅             |
+| Package Launcher      | ❌           | ✅             |
+| ROS2 Installer      | ❌           | ✅             |
 
