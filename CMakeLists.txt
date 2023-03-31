@@ -22,7 +22,14 @@ project(rover_install
   VERSION 1.0.0
 )
 
-add_executable(rover_installer src/main.cpp src/UI/ui.hpp src/UI/ui.cpp src/include/robot_info.hpp src/UI/log_displayer.cpp src/UI/log_displayer.hpp src/include/log_line.cpp src/include/log_line.hpp)
+add_executable(rover_installer 
+  src/main.cpp 
+  src/UI/ui.hpp 
+  src/UI/ui.cpp 
+  src/include/robot_info.hpp 
+  src/UI/logger.cpp 
+  src/include/logger.hpp 
+)
 target_include_directories(rover_installer PRIVATE src)
 
 target_link_libraries(rover_installer
@@ -30,3 +37,5 @@ target_link_libraries(rover_installer
   PRIVATE ftxui::dom
   PRIVATE ftxui::component # Not needed for this example.
 )
+
+set_target_properties(rover_installer PROPERTIES CXX_STANDARD 17)

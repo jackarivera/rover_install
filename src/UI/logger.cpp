@@ -1,6 +1,22 @@
-#include "log_displayer.hpp"
+#include "include/logger.hpp"
 
-Element LogDisplayer::RenderLog(std::vector<LogFormatter::LogLine*> log_lines){
+void Logger::log_info(std::string log){
+    Logger::create_log("INFO", log, Logger::get_logger_time());
+}
+
+void Logger::log_warning(std::string log){
+    Logger::create_log("WARNING", log, Logger::get_logger_time());
+}
+
+void Logger::log_success(std::string log){
+    Logger::create_log("SUCCESS", log, Logger::get_logger_time());
+}
+
+void Logger::log_error(std::string log){
+    Logger::create_log("ERROR", log, Logger::get_logger_time());
+}
+
+Element Logger::RenderLog(){
     Elements logs;
 
     int level_size = 10;
@@ -15,16 +31,16 @@ Element LogDisplayer::RenderLog(std::vector<LogFormatter::LogLine*> log_lines){
         text("Time") | size(WIDTH, EQUAL, time_size)
     });
 
-    for(auto& log : log_lines){
+    for(Logger::LogLine log : Logger::get_log_lines()){
         Decorator type_style;
         Decorator message_style;
-        if(log->type == "WARNING"){
+        if(log.type == "WARNING"){
             type_style = size(WIDTH, EQUAL, level_size) | color(Color::Orange1);
             message_style = size(WIDTH, GREATER_THAN, message_size) | color(Color::Orange1) | dim | xflex;
-        } else if(log->type == "ERROR") {
+        } else if(log.type == "ERROR") {
             type_style = size(WIDTH, EQUAL, level_size) | color(Color::Red1);
             message_style = size(WIDTH, GREATER_THAN, message_size) | color(Color::Red1) | dim | xflex;
-        } else if(log->type == "SUCCESS") {
+        } else if(log.type == "SUCCESS") {
             type_style = size(WIDTH, EQUAL, level_size) | color(Color::Green1);
             message_style = size(WIDTH, GREATER_THAN, message_size) | color(Color::Green1) | dim | xflex;
         } else {
@@ -32,11 +48,11 @@ Element LogDisplayer::RenderLog(std::vector<LogFormatter::LogLine*> log_lines){
             message_style = size(WIDTH, GREATER_THAN, message_size) | dim | xflex;
         }
         Element log_box = hbox({
-            text(log->type) | type_style,
+            text(log.type) | type_style,
             separator(),
-            text(log->log) | message_style,
+            text(log.log) | message_style,
             separator(),
-            text(std::to_string(log->time)) | size(WIDTH, EQUAL, time_size)
+            text(std::to_string(log.time)) | size(WIDTH, EQUAL, time_size)
         });
         logs.push_back(log_box);
     }
@@ -47,4 +63,3 @@ Element LogDisplayer::RenderLog(std::vector<LogFormatter::LogLine*> log_lines){
                                     vbox(logs) | yframe
                                 }));
 }
-
