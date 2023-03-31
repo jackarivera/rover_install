@@ -24,5 +24,6 @@ class UI : public ComponentBase {
     public:
         UI() = default;
         Component RenderInstallerUI();
+        void create_da_logger_man();
 };
 #endif

@@ -3,6 +3,8 @@
 
 #include <string>
 #include "ftxui/component/component.hpp"
+#include <chrono>
+#include <ctime>
 
 using namespace ftxui;
 
@@ -10,10 +12,10 @@ class Logger {
     private:
         struct LogLine {
             std::string type;
-            int time = 0;
+            char* time = 0;
             std::string log;
         };
-        int logger_timer;
+        time_t logger_timer;
         std::vector<LogLine> log_lines;
     public:
         Logger() = default;
@@ -30,7 +32,7 @@ class Logger {
             return log_lines;
         }
 
-        LogLine create_log(std::string log_type, std::string log_str, int log_time) {
+        LogLine create_log(std::string log_type, std::string log_str, char* log_time) {
             LogLine log_line;
             log_line.type = log_type;
             log_line.log = log_str;
@@ -39,9 +41,9 @@ class Logger {
             return log_line;
         }
 
-        int get_logger_time(){
-            logger_timer = 0;
-            return logger_timer;
+        char* get_logger_time(){
+            logger_timer = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+            return std::ctime(&logger_timer);
         }
 };
 

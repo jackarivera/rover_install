@@ -57,17 +57,22 @@ Container::Horizontal({
 })
 });
 
+Logger logman = Logger();
+
+void UI::create_da_logger_man(){
+    logman.log_success("This is a success log");
+    logman.log_error("This is an error log");
+    logman.log_info("This is an info log");
+    logman.log_warning("This is a warning log");
+    logman.log_success("Another success");
+    logman.log_success("another another success");
+}
 
 Component UI::RenderInstallerUI(){
     return Renderer(layout, [&] {
         auto robots_win = window(text("Rover Robots"), robots_component->Render() | size(WIDTH, EQUAL, 20));
         auto packages_win = window(text("Additional Packages"), packages_component->Render());
         auto install_win = window(text("Install"), vbox(install_text_render(), text(""), separator(), install_button->Render() | center) | flex_grow);
-        Logger logman = Logger();
-        logman.log_success("This is a success log");
-        logman.log_error("This is an error log");
-        logman.log_info("This is an info log");
-        logman.log_warning("This is a warning log");
         Element logs_win = logman.RenderLog();
 
         auto vertical_layout = vbox({
