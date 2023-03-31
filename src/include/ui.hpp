@@ -20,10 +20,17 @@
 
 using namespace ftxui;
 
-class UI : public ComponentBase {
+class RoverTab : public ComponentBase {
     public:
-        UI() = default;
-        Component RenderInstallerUI();
+        RoverTab() = default;
+        Component RenderTab();
+        void create_da_logger_man();
+};
+
+class RosTab : public ComponentBase {
+    public:
+        RosTab() = default;
+        Component RenderTab();
         void create_da_logger_man();
 };
 #endif

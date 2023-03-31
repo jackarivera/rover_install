@@ -24,11 +24,12 @@ project(rover_install
 
 add_executable(rover_installer 
   src/main.cpp 
-  src/UI/ui.hpp 
-  src/UI/ui.cpp 
-  src/include/robot_info.hpp 
   src/UI/logger.cpp 
+  src/UI/ros_install_tab.cpp
+  src/UI/rover_install_tab.cpp
   src/include/logger.hpp 
+  src/include/robot_info.hpp 
+  src/include/ui.hpp 
 )
 target_include_directories(rover_installer PRIVATE src)
 
