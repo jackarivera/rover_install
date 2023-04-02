@@ -1,0 +1,18 @@
+{
+    "systems":[
+        {
+            "name": "Ubuntu 22.04 Jammy",
+            "ros":{
+                "ROS2 Humble (Debian)": "ros_humble_debian",
+                "ROS2 Humble (Docker)": "ros_humble_docker"
+            }
+        },
+        {
+            "name": "Ubuntu 22.04 Jammy",
+            "ros":{
+                "ROS2 Humble (Docker)": "ros_humble_docker"
+            }
+        }
+    ]
+
+}

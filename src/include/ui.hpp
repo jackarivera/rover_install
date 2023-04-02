@@ -32,5 +32,6 @@ class RosTab : public ComponentBase {
         RosTab() = default;
         Component RenderTab();
         void create_da_logger_man();
+
 };
 #endif

@@ -1,0 +1,101 @@
+{
+    "robots":[
+        {
+            "name": "Pro",
+            "packages":[
+                "Foxglove",
+                "Slam Toolbox",
+                "Nav2",
+                "Slamtec Lidar Driver",
+                "BMI088 IMU Driver",
+                "Intel Realsense Driver"
+            ],
+            "playbook":[
+                "install_deps",
+                "write_this_later",
+                "etc etc etc"
+            ]
+        },
+        {
+            "name": "Mini",
+            "packages":[
+                "Foxglove",
+                "Slam Toolbox",
+                "Nav2",
+                "Slamtec Lidar Driver",
+                "BMI088 IMU Driver",
+                "Intel Realsense Driver"
+            ],
+            "playbook":[
+                "install_deps",
+                "write_this_later",
+                "etc etc etc"
+            ]
+        },
+        {
+            "name": "Miti",
+            "packages":[
+                "Foxglove",
+                "Slam Toolbox",
+                "Nav2",
+                "Slamtec Lidar Driver",
+                "BMI088 IMU Driver",
+                "Intel Realsense Driver"
+            ],
+            "playbook":[
+                "install_deps",
+                "write_this_later",
+                "etc etc etc"
+            ]
+        },
+        {
+            "name": "Zero2",
+            "packages":[
+                "Foxglove",
+                "Slam Toolbox",
+                "Nav2",
+                "Slamtec Lidar Driver",
+                "BMI088 IMU Driver",
+                "Intel Realsense Driver"
+            ],
+            "playbook":[
+                "install_deps",
+                "write_this_later",
+                "etc etc etc"
+            ]
+        },
+        {
+            "name": "Zero3",
+            "packages":[
+                "Foxglove",
+                "Slam Toolbox",
+                "Nav2",
+                "Slamtec Lidar Driver",
+                "BMI088 IMU Driver",
+                "Intel Realsense Driver"
+            ],
+            "playbook":[
+                "install_deps",
+                "write_this_later",
+                "etc etc etc"
+            ]
+        },
+        {
+            "name": "Pro",
+            "packages":[
+                "Foxglove",
+                "Slam Toolbox",
+                "Nav2",
+                "Slamtec Lidar Driver",
+                "BMI088 IMU Driver",
+                "Intel Realsense Driver"
+            ],
+            "playbook":[
+                "install_deps",
+                "write_this_later",
+                "etc etc etc"
+            ]
+        }
+    ]
+
+}
