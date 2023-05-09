@@ -11,7 +11,13 @@ int selected_robot = 0;
 std::ifstream tab_config_file("/home/rover/Documents/rover_toolbox/src/configs/rover_install.json");
 json tab_json = json::parse(tab_config_file);;
 
+struct package_struct{
+    std::string name;
+    bool checked;
+};
+
 std::vector<std::string> robot_list_json;
+std::vector<package_struct*> packages_list_json;
 
 Component render_robots_component(){
     robot_list_json.clear();
@@ -26,17 +32,24 @@ Component render_robots_component(){
 
 Component packages_component() { 
 
-    auto return_container = Container::Vertical({
-        Checkbox(&additional_packages[0], &additional_packages_states[0]),
-        Checkbox(&additional_packages[1], &additional_packages_states[1]),
-        Checkbox(&additional_packages[2], &additional_packages_states[2]),
-        Checkbox(&additional_packages[3], &additional_packages_states[3]),
-        Checkbox(&additional_packages[4], &additional_packages_states[4]),
-        Checkbox(&additional_packages[5], &additional_packages_states[5]),
-        Checkbox(&additional_packages[6], &additional_packages_states[6])
-    });
+    Components compat_packages;
 
-    return return_container;
+    for(auto& package : tab_json["robots"][selected_robot]["packages"]){
+        package_struct curr_pack = package_struct{.name = package, .checked = false};
+        packages_list_json.push_back(&curr_pack);
+        compat_packages.push_back(Checkbox(&curr_pack.name, &curr_pack.checked));
+    }
+    // auto return_container = Container::Vertical({
+    //     Checkbox(&additional_packages[0], &additional_packages_states[0]),
+    //     Checkbox(&additional_packages[1], &additional_packages_states[1]),
+    //     Checkbox(&additional_packages[2], &additional_packages_states[2]),
+    //     Checkbox(&additional_packages[3], &additional_packages_states[3]),
+    //     Checkbox(&additional_packages[4], &additional_packages_states[4]),
+    //     Checkbox(&additional_packages[5], &additional_packages_states[5]),
+    //     Checkbox(&additional_packages[6], &additional_packages_states[6])
+    // });
+
+    return Container::Vertical({compat_packages});
 }
 
 Component packages_section = packages_component();

@@ -8,7 +8,8 @@
                 "Nav2",
                 "Slamtec Lidar Driver",
                 "BMI088 IMU Driver",
-                "Intel Realsense Driver"
+                "Intel Realsense Driver",
+                "Pro Only Pakcage"
             ],
             "playbook":[
                 "install_deps",
@@ -81,7 +82,7 @@
             ]
         },
         {
-            "name": "Super Ultra Secret",
+            "name": "Pro",
             "packages":[
                 "Foxglove",
                 "Slam Toolbox",
