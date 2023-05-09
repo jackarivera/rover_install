@@ -17,6 +17,9 @@ endif()
 
 # ------------------------------------------------------------------------------
 
+find_package(nlohmann_json 3.2.0 REQUIRED)
+
+
 project(rover_install
   LANGUAGES CXX
   VERSION 1.0.0
@@ -36,7 +39,8 @@ target_include_directories(rover_installer PRIVATE src)
 target_link_libraries(rover_installer
   PRIVATE ftxui::screen
   PRIVATE ftxui::dom
-  PRIVATE ftxui::component # Not needed for this example.
+  PRIVATE ftxui::component
+  PRIVATE nlohmann_json::nlohmann_json
 )
 
 set_target_properties(rover_installer PROPERTIES CXX_STANDARD 17)
