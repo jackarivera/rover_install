@@ -17,7 +17,9 @@ struct package_struct{
 };
 
 std::vector<std::string> robot_list_json;
-std::vector<package_struct*> packages_list_json;
+std::vector<std::string> packages_list_json;
+std::vector<bool> packages_states_json;
+bool test_bool = true;
 
 Component render_robots_component(){
     robot_list_json.clear();
@@ -34,10 +36,14 @@ Component packages_component() {
 
     Components compat_packages;
 
-    for(auto& package : tab_json["robots"][selected_robot]["packages"]){
-        package_struct curr_pack = package_struct{.name = package, .checked = false};
-        packages_list_json.push_back(&curr_pack);
-        compat_packages.push_back(Checkbox(&curr_pack.name, &curr_pack.checked));
+    int i = 0;
+    for(const auto& package : tab_json["robots"][selected_robot]["packages"]){
+        packages_list_json.push_back(package);
+        //packages_states_json.push_back(false);
+        //bool package_flag = packages_states_json[i];
+        auto cb = Checkbox(&(packages_list_json.back()), &test_bool);
+        compat_packages.push_back(cb);
+        i++;
     }
     // auto return_container = Container::Vertical({
     //     Checkbox(&additional_packages[0], &additional_packages_states[0]),
@@ -50,6 +56,7 @@ Component packages_component() {
     // });
 
     return Container::Vertical({compat_packages});
+    //return return_container;
 }
 
 Component packages_section = packages_component();
@@ -98,7 +105,7 @@ void RoverTab::create_da_logger_man(){
 }
 
 Component RoverTab::RenderTab(){
-    packages_section = packages_component();
+    //packages_section = packages_component();
     auto rover_tab_layout = Container::Vertical({
     Container::Horizontal({
         robots_section,

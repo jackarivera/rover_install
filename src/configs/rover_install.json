@@ -8,8 +8,15 @@
                 "Nav2",
                 "Slamtec Lidar Driver",
                 "BMI088 IMU Driver",
-                "Intel Realsense Driver",
-                "Pro Only Pakcage"
+                "Intel Realsense Driver"
+            ],
+            "selected_packages":[
+            	true,
+            	true,
+            	true,
+            	true,
+            	true,
+            	true
             ],
             "playbook":[
                 "install_deps",
